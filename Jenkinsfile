@@ -12,7 +12,7 @@ pipeline {
       }
       stage('Build') {
           steps {
-              sh 'docker build -t mynginx .'
+              sh 'sudo docker build -t mynginx .'
           }
       }
       stage('Lint') {
