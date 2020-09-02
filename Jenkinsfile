@@ -6,13 +6,13 @@ pipeline {
          steps {
             echo 'Checking out repo ..'
             git branch: 'master',
-                credentialsId: 'P8_github_token',
+                credentialsId: 'P3_github_token',
                 url: 'https://github.com/ulisesojeda/docker-sample-nginx.git'
          }
       }
       stage('Build') {
           steps {
-              sh 'sudo docker build -t mynginx .'
+              sh 'docker -t mynginx build .'
           }
       }
       stage('Lint') {
@@ -27,7 +27,7 @@ pipeline {
       }
       stage('Deploy') {
           steps {
-              sh 'curl http://backend:8000/deploy/?id=P2 > out.txt'
+              sh 'curl http://backend:8000/deploy/?id=P3 > out.txt'
               sh 'cat out.txt'
               sh 'cat out.txt | cut -d : -f 1-2 | grep true -q'
           }
